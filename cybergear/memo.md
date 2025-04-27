@@ -58,9 +58,20 @@ cybergearについて調べたことをここにまとめる
 - 速度制御 - `ros2 run cybergear_socketcan_driver cybergear_velocity_driver_node --ros-args -p device_id:=<id>`
 - トルク制御 - `ros2 run cybergear_socketcan_driver cybergear_torque_driver_node --ros-args -p device_id:=<id>`
 - `ros2_socketcan`のreceiverとsenderを起動しておく必要がある
+- `ros2 run cybergear_maintenance_tools search_cybergear_id_node` - idのチェック
+- `ros2 run cybergear_maintenance_tools change_cybergear_id_node --ros-args -p device_id:=1 -p target_id:=3` - idの設定。`device_id`が現在のid、`target_id`が設定したいid
 
 # パラメータについて
 - 位置制御に関しては「位置指定による位置制御」と「パラメータ指定による位置制御」の二つがある
   - 位置制御はcybergear側で実装されているが、なぜかパラメータで位置を指定できる
   - パラメータidは`0x7016`
   - でも、手動でデコード指令値と応答値が合わない
+
+
+# データシートに載ってないパラメータの取得コマンド
+- これを送信するとすべてのパラメータが一気に帰ってくる
+```
+id: 318831999
+dlc: 8
+data: 199,64,49,49,48,51,49,10
+```
